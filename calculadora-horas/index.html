@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Calculadora de Horas Laborales</h1>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Configuración de Horarios</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="hoursForm">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Horario de Marcación</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label>Hora Entrada:</label>
+                                        <input type="time" id="attendanceIn" class="form-control" value="08:00" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label>Hora Salida:</label>
+                                        <input type="time" id="attendanceOut" class="form-control" value="18:30" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Conceptos de Horas</label>
+                                
+                                <div class="concept-row p-2 mb-2 border rounded">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Concepto:</label>
+                                            <input type="text" class="form-control" value="HO" readonly>
+                                            <small class="text-muted">Horas Ordinarias</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Inicio:</label>
+                                            <input type="time" id="HO-start" class="form-control" value="08:00">
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Fin:</label>
+                                            <input type="time" id="HO-end" class="form-control" value="17:59">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="concept-row p-2 mb-2 border rounded">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Concepto:</label>
+                                            <input type="text" class="form-control" value="HED" readonly>
+                                            <small class="text-muted">Horas Extras Diurnas</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Inicio:</label>
+                                            <input type="time" id="HED-start" class="form-control" value="18:00">
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Fin:</label>
+                                            <input type="time" id="HED-end" class="form-control" value="20:59">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="concept-row p-2 mb-2 border rounded">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Concepto:</label>
+                                            <input type="text" class="form-control" value="HEN" readonly>
+                                            <small class="text-muted">Horas Extras Nocturnas</small>
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Inicio:</label>
+                                            <input type="time" id="HEN-start" class="form-control" value="21:00">
+                                        </div>
+                                        <div class="col-4">
+                                            <label>Fin:</label>
+                                            <input type="time" id="HEN-end" class="form-control" value="05:59">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Calcular Horas</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div id="spinner" class="text-center py-5" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <p class="mt-2">Calculando...</p>
+                </div>
+                
+                <div id="resultsSection" style="display: none;">
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Resultados del Cálculo</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="results-container" class="mb-4">
+                            </div>
+                            
+                            <div style="height: 250px;">
+                                <canvas id="hoursChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="noResultsSection" class="text-center py-5">
+                    <i class="fas fa-calculator fa-4x text-muted mb-3"></i>
+                    <h4 class="text-muted">Sin resultados aún</h4>
+                    <p class="text-muted">Complete el formulario y presione "Calcular Horas"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
