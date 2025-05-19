@@ -1,4 +1,3 @@
-// Servicio para manejar llamadas a la API
 const ApiService = {
     calculateHours: function(formData) {
         return $.ajax({
